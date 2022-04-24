@@ -1,12 +1,13 @@
 from .models import Movie, Rating
 from .serializers import MovieSerializer, RatingSerializer
-from rest_framework.generics import ListCreateAPIView, CreateAPIView
+from rest_framework.generics import *
+from rest_framework.mixins import *
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from django.db.models import Avg
 
 
 # Create your views here.
-class MovieView(ListCreateAPIView):
+class MovieListView(ListCreateAPIView):
     serializer_class = MovieSerializer
     permission_classes = [IsAuthenticatedOrReadOnly] 
 
@@ -23,6 +24,13 @@ class MovieView(ListCreateAPIView):
     def get_serializer_context(self):
         return {'request': self.request}
 
+class MovieDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = Movie.objects.all()
+    serializer_class = MovieSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly] 
+
+    def get_serializer_context(self):
+        return {'request': self.request}
 
 class RatingView(CreateAPIView):
     queryset = Rating.objects.all()
