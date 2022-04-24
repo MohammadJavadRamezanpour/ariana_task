@@ -19,4 +19,28 @@ from django.urls import path, include
 urlpatterns = [
     path('', include("movie.urls")),
     path('admin/', admin.site.urls),
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.jwt')),
 ]
+
+"""
+we used djoser for authentication
+
+available routes:
+    auth/users/
+    auth/users/me/
+    auth/users/confirm/
+    auth/users/resend_activation/
+    auth/users/set_password/
+    auth/users/reset_password/
+    auth/users/reset_password_confirm/
+    auth/users/set_username/
+    auth/users/reset_username/
+    auth/users/reset_username_confirm/
+    auth/jwt/create/ (JSON Web Token Authentication)
+    auth/jwt/refresh/ (JSON Web Token Authentication)
+    auth/jwt/verify/ (JSON Web Token Authentication)
+
+documentation: https://djoser.readthedocs.io/
+
+"""
