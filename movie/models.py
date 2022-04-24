@@ -25,7 +25,7 @@ class Movie(models.Model):
 class Rating(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) 
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name="ratings")
-    score = models.PositiveSmallIntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)])
+    score = models.PositiveSmallIntegerField(validators=[MinValueValidator(0), MaxValueValidator(10)])
 
     class Meta:
         # we dont want a user to have two ratings on one movie
