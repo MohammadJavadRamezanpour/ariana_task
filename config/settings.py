@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # third party libraries
     'rest_framework',
     'djoser',
+    'django_celery_results',
 
     # my apps
     'movie',
@@ -143,3 +144,11 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Celery Configuration Options
+CELERY_TIMEZONE = "Australia/Tasmania"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_CACHE_BACKEND = 'django-cache'
+CELERY_BROKER_URL = "redis://localhost:6379"

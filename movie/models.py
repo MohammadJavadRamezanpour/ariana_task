@@ -5,6 +5,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.mail import send_mail
 from django.contrib.auth import get_user_model
+from .task import cely_mail
 
 class Movie(models.Model):
     title = models.CharField(max_length=50)
@@ -43,4 +44,4 @@ def send_email(sender, instance, **kwargs):
     this actually sends email to every user in the database
     but the email is not real, it just shows the email in terminal
     """
-    send_mail(f"{instance.title} movie just piblished", "this movie is so fun\ndont miss it ;)", "info@email.com", [user.email for user in get_user_model().objects.all()])
+    cely_mail.delay(f"{instance.title} movie just piblished", "this movie is so fun\ndont miss it ;)", "info@email.com", [user.email for user in get_user_model().objects.all()])

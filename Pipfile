@@ -8,6 +8,8 @@ django = "*"
 djangorestframework = "*"
 djoser = "*"
 djangorestframework-simplejwt = "*"
+celery = "*"
+django-celery-results = "*"
 
 [dev-packages]
 
